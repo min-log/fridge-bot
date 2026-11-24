@@ -1,0 +1,18 @@
+version: 2
+updates:
+  - package-ecosystem: gradle
+    directory: /backend
+    schedule:
+      interval: weekly
+    groups:
+      spring:
+        patterns: ['org.springframework*']
+    ignore:
+      # Boot 4.2 이상 마이너 업그레이드는 직접 계획해서 진행함 (docs/01_설계.md 결정 기록).
+      # 4.1.x 패치는 계속 받음.
+      - dependency-name: 'org.springframework.boot*'
+        update-types: ['version-update:semver-major', 'version-update:semver-minor']
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly

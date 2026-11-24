@@ -1,0 +1,35 @@
+# --- 비밀값: 첫 커밋 전에 막아 둠 ---
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.jks
+
+# --- OS·에디터 ---
+.DS_Store
+.idea/
+*.iml
+*.iws
+*.ipr
+.vscode/
+out/
+
+# --- Gradle·Java ---
+.gradle/
+build/
+bin/
+!gradle/wrapper/gradle-wrapper.jar
+HELP.md
+
+# --- Node (frontend) ---
+node_modules/
+dist/
+
+# --- 런타임 데이터 ---
+uploads/
+data/
+
+# --- 개인 메모 (공개 저장소에 올리지 않음) ---
+docs/private/

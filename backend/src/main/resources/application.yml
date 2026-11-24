@@ -1,0 +1,31 @@
+# 접속 정보·비밀값은 여기에 적지 않음.
+# SPRING_DATASOURCE_*, SPRING_DATA_REDIS_* 환경변수로만 받음 (.env.example 참고).
+# 테스트와 로컬 실행(bootTestRun)은 Testcontainers가 @ServiceConnection으로 채움.
+spring:
+  application:
+    name: fridge-bot
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        jdbc:
+          time_zone: UTC
+  flyway:
+    enabled: true
+  jackson:
+    time-zone: Asia/Seoul
+
+server:
+  shutdown: graceful
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health
+  endpoint:
+    health:
+      probes:
+        enabled: true
