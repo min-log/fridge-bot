@@ -1,5 +1,6 @@
-# 접속 정보·비밀값은 여기에 적지 않음.
-# SPRING_DATASOURCE_*, SPRING_DATA_REDIS_* 환경변수로만 받음 (.env.example 참고).
+# 접속 정보·비밀값은 여기에 적지 않음. 기본값 없이 환경변수로만 받음 (.env.example 참고).
+# - DB·Redis: SPRING_DATASOURCE_*, SPRING_DATA_REDIS_* (Spring 표준 이름을 그대로 사용)
+# - 그 밖의 값: 아래 ${...} 참조
 # 테스트와 로컬 실행(bootTestRun)은 Testcontainers가 @ServiceConnection으로 채움.
 spring:
   application:
@@ -16,9 +17,45 @@ spring:
     enabled: true
   jackson:
     time-zone: Asia/Seoul
+  mvc:
+    problemdetails:
+      enabled: true
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: ${GOOGLE_CLIENT_ID}
+            client-secret: ${GOOGLE_CLIENT_SECRET}
+            scope: [email, profile]
+          kakao:
+            client-id: ${KAKAO_CLIENT_ID}
+            client-secret: ${KAKAO_CLIENT_SECRET}
+            client-name: Kakao
+            client-authentication-method: client_secret_post
+            authorization-grant-type: authorization_code
+            redirect-uri: "{baseUrl}/login/oauth2/code/{registrationId}"
+            # 이메일(account_email)은 카카오 검수가 필요해 받지 않음. users.email은 비어 있을 수 있음
+            scope: [profile_nickname]
+        provider:
+          kakao:
+            authorization-uri: https://kauth.kakao.com/oauth/authorize
+            token-uri: https://kauth.kakao.com/oauth/token
+            user-info-uri: https://kapi.kakao.com/v2/user/me
+            user-name-attribute: id
+
+app:
+  auth:
+    jwt-secret: ${JWT_SECRET}
+    frontend-url: ${APP_FRONTEND_URL}
+    access-token-ttl: 30m
+    refresh-token-ttl: 14d
+    login-code-ttl: 60s
 
 server:
   shutdown: graceful
+  # Caddy 뒤에서 OAuth2 redirect-uri({baseUrl})가 https 주소로 만들어지게 함
+  forward-headers-strategy: framework
 
 management:
   endpoints:

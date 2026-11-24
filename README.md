@@ -3,7 +3,7 @@
 영수증 사진을 올리면 AI가 품목·가격을 뽑아 가구(냉장고) 재고에 넣고, 유통기한이 다가오면 알려 주고, 남은 재료로 메뉴를 추천하는 PWA 서비스.
 
 - 설계·결정 기록: [docs/01_설계.md](docs/01_설계.md)
-- 진행 상황: 1주차 (뼈대 · 테스트 · CI)
+- 진행 상황: 2주차 (로그인 · 가구)
 
 ## 구조
 
@@ -20,7 +20,14 @@ docs/       설계·회고
 ```bash
 cd backend
 ./gradlew test          # Testcontainers로 pgvector·Redis를 띄워 테스트
-./gradlew bootTestRun   # 같은 컨테이너로 앱 실행 (별도 DB 설치 없음)
+```
+
+앱 실행: `.env.example`을 `.env`로 복사해 JWT·소셜 로그인 값을 채운 뒤, 같은 컨테이너로 실행한다 (별도 DB 설치 없음).
+
+```bash
+cd backend
+set -a; source ../.env; set +a
+./gradlew bootTestRun
 ```
 
 실제 LLM API를 부르는 테스트(`@Tag("llm")`)는 CI에서 제외하고 `./gradlew llmTest`로 직접 실행한다.

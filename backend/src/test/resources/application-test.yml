@@ -1,0 +1,8 @@
+# 테스트 전용 가짜 값. 실제 서비스에서는 쓰이지 않음.
+GOOGLE_CLIENT_ID: test-google-client
+GOOGLE_CLIENT_SECRET: test-google-secret
+KAKAO_CLIENT_ID: test-kakao-client
+KAKAO_CLIENT_SECRET: test-kakao-secret
+# "test-only-jwt-secret-not-for-production-use" 를 Base64로 인코딩한 값
+JWT_SECRET: dGVzdC1vbmx5LWp3dC1zZWNyZXQtbm90LWZvci1wcm9kdWN0aW9uLXVzZQ== # gitleaks:allow
+APP_FRONTEND_URL: http://localhost:5173
