@@ -4,9 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.webmvc.test.autoconfigure.AutoConfigureMockMvc;
-import org.springframework.context.annotation.Import;
+import com.fridgebot.support.IntegrationTest;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.web.servlet.assertj.MockMvcTester;
@@ -15,9 +13,7 @@ import org.springframework.test.web.servlet.assertj.MockMvcTester;
  * 1주차 뼈대 검증: 실제 Postgres(pgvector)·Redis 컨테이너로 컨텍스트가 뜨고,
  * Flyway가 실행되고, 배포 후 CD가 볼 /actuator/health 가 UP 인지 확인한다.
  */
-@Import(TestcontainersConfiguration.class)
-@SpringBootTest
-@AutoConfigureMockMvc
+@IntegrationTest
 class FridgeBotApplicationTests {
 
 	@Autowired
