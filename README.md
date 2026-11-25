@@ -2,7 +2,8 @@
 
 영수증 사진을 올리면 AI가 품목·가격을 뽑아 가구(냉장고) 재고에 넣고, 유통기한이 다가오면 알려 주고, 남은 재료로 메뉴를 추천하는 PWA 서비스.
 
-- 설계·결정 기록: [docs/01_설계.md](docs/01_설계.md)
+- 설계: [docs/01_설계.md](docs/01_설계.md)
+- 구현 중 결정 기록(ADR): [docs/adr/](docs/adr/README.md)
 - 진행 상황: 2주차 (로그인 · 가구)
 
 ## 구조
@@ -10,7 +11,7 @@
 ```
 backend/    Spring Boot 4.1 (Java 25, Gradle)
 frontend/   React 19 + Vite PWA (4주차에 추가)
-docs/       설계·회고
+docs/       설계, 결정 기록(adr/)
 ```
 
 ## 로컬 실행
